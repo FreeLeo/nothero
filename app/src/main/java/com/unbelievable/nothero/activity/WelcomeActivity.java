@@ -15,6 +15,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        autoJump(HomeActivity.class,Constants.DEFAULT_DELAY_WELCOME);
+        autoJump(DemoActivity.class,Constants.DEFAULT_DELAY_WELCOME,true);
     }
 }

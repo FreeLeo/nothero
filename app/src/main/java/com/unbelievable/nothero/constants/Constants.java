@@ -6,5 +6,5 @@ package com.unbelievable.nothero.constants;
 
 public class Constants {
     /** 启动页延时跳转 */
-    public static final int DEFAULT_DELAY_WELCOME = 3;
+    public static final int DEFAULT_DELAY_WELCOME = 3000;
 }

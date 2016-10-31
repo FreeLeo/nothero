@@ -24,14 +24,28 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 延时自动跳转
+     * @param cls
      * @param seconds
      */
     public void autoJump(final Class cls,int seconds){
+        autoJump(cls,seconds,false);
+    }
+
+    /**
+     * 延时自动跳转
+     * @param cls        目标界面
+     * @param seconds   延时时长
+     * @param isFinish   跳转后是否结束当前界面
+     */
+    public void autoJump(final Class cls, int seconds, final boolean isFinish){
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 jump(cls);
+                if(isFinish){
+                    BaseActivity.this.finish();
+                }
             }
         },seconds);
     }
