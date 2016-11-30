@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.unbelievable.nothero.R;
-
 public class DemoActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
