@@ -1,12 +1,13 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 23
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion 14
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
 
@@ -26,6 +27,16 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.+'
     testCompile 'junit:junit:4.12'
+}
+uploadArchives {
+    repositories.mavenDeployer {
+        def mavenRepositoryPath = file(getProperty('aar.Utils'))
+        repository(url: "file://${mavenRepositoryPath.absolutePath}")
+        pom.project {
+            groupId "com.android.open.utils"
+            artifactId "Utils"
+            version 1.0
+        }
+    }
 }

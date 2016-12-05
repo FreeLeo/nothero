@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.DemoActivity" />
         <activity android:name=".activity.HomeTabActivity"></activity>
     </application>
 
