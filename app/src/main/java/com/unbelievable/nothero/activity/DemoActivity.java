@@ -12,12 +12,6 @@ public class DemoActivity extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
-        Logger.init(true,Logger.DEBUG);
-        Logger.v(TAG,"vvvvv");
-        Logger.d(TAG,"ddddd");
-        Logger.i(TAG,"iiiii");
-        Logger.w(TAG,"wwww");
-        Logger.e(TAG,"eeeee");
     }
 
     @Override
@@ -30,5 +24,8 @@ public class DemoActivity extends BaseActivity implements View.OnClickListener{
 
     public void toHomeTabActivity(View v){
         jump(HomeTabActivity.class);
+    }
+    public void toBarChartActivity(View v){
+        jump(BarChartActivity.class);
     }
 }
