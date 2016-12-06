@@ -1,4 +1,4 @@
-package com.android.open.utils;
+package com.unbelievable.nothero.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

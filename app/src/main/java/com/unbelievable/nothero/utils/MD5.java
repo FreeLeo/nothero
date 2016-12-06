@@ -1,11 +1,9 @@
-package com.android.open.utils;
+package com.unbelievable.nothero.utils;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import android.os.Looper;
 
 public class MD5 {
 	public static String crypt(String str) {
