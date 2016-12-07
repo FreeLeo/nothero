@@ -1,4 +1,4 @@
-package com.unbelievable.nothero.View;
+package com.unbelievable.library.nothero.View;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,7 +15,6 @@ import android.view.View;
 
 import com.unbelievable.nothero.R;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**

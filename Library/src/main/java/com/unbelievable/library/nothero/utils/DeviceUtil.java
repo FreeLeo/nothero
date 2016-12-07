@@ -1,4 +1,4 @@
-package com.unbelievable.nothero.utils;
+package com.unbelievable.library.nothero.utils;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;

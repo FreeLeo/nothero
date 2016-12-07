@@ -1,4 +1,4 @@
-package com.unbelievable.nothero.utils;
+package com.unbelievable.library.nothero.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
