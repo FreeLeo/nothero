@@ -13,7 +13,7 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.unbelievable.nothero.R;
+import com.unbelievable.library.nothero.R;
 
 import java.util.List;
 

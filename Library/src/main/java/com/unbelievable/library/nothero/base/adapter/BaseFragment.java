@@ -1,4 +1,4 @@
-package com.unbelievable.library.nothero.Fragment;
+package com.unbelievable.library.nothero.base.adapter;
 
 import android.content.Context;
 import android.net.Uri;
