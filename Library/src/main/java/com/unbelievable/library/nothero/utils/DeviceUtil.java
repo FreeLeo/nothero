@@ -79,7 +79,7 @@ public class DeviceUtil {
                 isAllZero = pattern.matcher(uniqueId).matches();
             }
             if(TextUtils.isEmpty(uniqueId) || isAllZero){
-                uniqueId = MD5.crypt(System.currentTimeMillis() + UUID.randomUUID().toString());
+                uniqueId = StringUtil.crypt(System.currentTimeMillis() + UUID.randomUUID().toString());
             }
             PreferencesUtil.put("udid", uniqueId);
         }
