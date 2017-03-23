@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.unbelievable.nothero.download.DownloadFragment">
+
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="start download"/>
+    <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="remove"/>
+    <Button
+        android:id="@+id/btn_query"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="query"/>
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

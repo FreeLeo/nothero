@@ -16,7 +16,7 @@ public class Logger {
 	public static final int ASSERT = android.util.Log.ASSERT;
 
 	/** 是否显示日志*/
-	private static boolean isLog = false;// false 不显示，true 显示
+	private static boolean isLog = true;// false 不显示，true 显示
 
 	private static int filter = DEBUG;
 
@@ -43,7 +43,7 @@ public class Logger {
 	 * @return boolean
      */
 	public static boolean isLogable(int level) {
-		if (isLog && level <= filter)
+		if (isLog && level >= filter)
 			return true;
 		else
 			return false;

@@ -15,9 +15,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 
-import com.unbelievable.nothero.Fragment.BaseFragment;
-import com.unbelievable.nothero.Fragment.TestFragment;
+import com.unbelievable.library.nothero.base.adapter.BaseFragment;
 import com.unbelievable.nothero.R;
+import com.unbelievable.nothero.download.DownloadFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,15 +49,15 @@ public class HomeTabActivity extends BaseActivity implements View.OnClickListene
         mTabManager = new TabManager(this, mTabHost, R.id.containertabcontent);
 
         RelativeLayout indicator1 = (RelativeLayout) getLayoutInflater().inflate(R.layout.tab_indicator_home, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_HOME).setIndicator(indicator1), TestFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_HOME).setIndicator(indicator1), DownloadFragment.class, null);
         RelativeLayout indicator2 = (RelativeLayout) getLayoutInflater().inflate(R.layout.tab_indicator_home, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_PRODUCT).setIndicator(indicator2), TestFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_PRODUCT).setIndicator(indicator2), DownloadFragment.class, null);
         RelativeLayout indicator3 = (RelativeLayout) getLayoutInflater().inflate(R.layout.tab_indicator_home, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_PUBLISHED).setIndicator(indicator3), TestFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_PUBLISHED).setIndicator(indicator3), DownloadFragment.class, null);
         RelativeLayout indicator4 = (RelativeLayout) getLayoutInflater().inflate(R.layout.tab_indicator_home, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_CART).setIndicator(indicator4),TestFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_CART).setIndicator(indicator4),DownloadFragment.class, null);
         RelativeLayout indicator5 = (RelativeLayout) getLayoutInflater().inflate(R.layout.tab_indicator_home, null);
-        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_I).setIndicator(indicator5),TestFragment.class, null);
+        mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_I).setIndicator(indicator5),DownloadFragment.class, null);
 
         if (savedInstanceState != null) {
             mTabHost.setCurrentTabByTag(savedInstanceState.getString("tag"));

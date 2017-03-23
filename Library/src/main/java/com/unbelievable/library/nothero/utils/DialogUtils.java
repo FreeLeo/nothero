@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 /**
  * 对话框工具箱
- * @author xiaopan
+ * @author 里镇
  *
  */
 public class DialogUtils {
@@ -114,13 +114,5 @@ public class DialogUtils {
      */
     public static void setDialogClickClose(AlertDialog alertDialog, boolean close){
         ReflectUtils.setField(alertDialog, "mShowing", close, true, true);
-    }
-
-    public static void showToast(Context context,int stringId){
-        showToast(context,context.getResources().getString(stringId));
-    }
-
-    public static void showToast(Context context,String message){
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show();
     }
 }
