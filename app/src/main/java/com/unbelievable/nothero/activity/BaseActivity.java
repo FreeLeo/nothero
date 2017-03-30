@@ -3,6 +3,8 @@ package com.unbelievable.nothero.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -56,5 +58,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void showToast(String str){
         Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+    }
+
+    public void replaceFragment(int resId,Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(resId,fragment).commit();
     }
 }

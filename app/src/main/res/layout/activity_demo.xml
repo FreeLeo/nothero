@@ -24,5 +24,10 @@
             android:layout_height="wrap_content"
             android:onClick="toBarChartActivity"
             android:text="运动柱状图"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="toAdapterActivity"
+            android:text="adapter测试"/>
     </LinearLayout>
 </ScrollView>

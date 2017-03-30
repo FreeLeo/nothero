@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.unbelievable.nothero.R;
+import com.unbelievable.nothero.testadapter.AdapterActivity;
 
 public class DemoActivity extends BaseActivity implements View.OnClickListener{
     private String TAG = DemoActivity.class.getSimpleName();
@@ -26,5 +27,8 @@ public class DemoActivity extends BaseActivity implements View.OnClickListener{
     }
     public void toBarChartActivity(View v){
         jump(BarChartActivity.class);
+    }
+    public void toAdapterActivity(View v){
+        jump(AdapterActivity.class);
     }
 }
