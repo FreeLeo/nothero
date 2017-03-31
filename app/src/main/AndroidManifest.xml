@@ -18,12 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.DemoActivity" />
-        <activity android:name=".activity.HomeTabActivity" />
-        <activity android:name=".activity.BarChartActivity" />
-        <activity android:name=".activity.RecyclerViewActivity" />
-        <activity android:name=".testadapter.AdapterActivity"></activity>
+        <activity
+            android:name=".activity.HomeTabActivity"
+            android:label="@string/act_lable_tab" />
+        <activity
+            android:name=".activity.BarChartActivity"
+            android:label="@string/act_lable_bar_chart" />
+        <activity
+            android:name=".testadapter.AdapterActivity"
+            android:label="@string/act_lable_adapter" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.SimpleSelectPhotoActivity" android:label="@string/act_lable_simple_select_photo"/>
     </application>
 
 </manifest>

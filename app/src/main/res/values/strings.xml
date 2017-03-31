@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">nothero</string>
 
-    <string name="test">测试</string>
+    <string name="test">test</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="act_lable_tab">tab activity at bottom</string>
+    <string name="act_lable_bar_chart">bar chart</string>
+    <string name="act_lable_adapter">recycleview adapter</string>
+    <string name="act_lable_simple_select_photo">simple select photo</string>
 </resources>
