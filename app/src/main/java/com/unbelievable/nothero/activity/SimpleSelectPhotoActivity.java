@@ -2,6 +2,7 @@ package com.unbelievable.nothero.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 
 import com.unbelievable.library.nothero.photoselector.simple.SimpleSelectPhotoManager;
 import com.unbelievable.nothero.R;
+
+import java.io.FileNotFoundException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,11 +30,15 @@ public class SimpleSelectPhotoActivity extends BaseActivity {
 
         mSimpleSelectPhotoManager = new SimpleSelectPhotoManager(this,new SimpleSelectPhotoManager.SelectListener() {
             @Override
-            public void zoomPhoto(Bitmap bitmap,Uri uri) {
+            public void cropPhoto(Bitmap bitmap,Uri uri) {
                 if(bitmap != null) {
                     ivPhoto.setImageBitmap(bitmap);
                 }else{
-                    ivPhoto.setImageURI(uri);
+                    try {
+                        ivPhoto.setImageBitmap(BitmapFactory.decodeStream(SimpleSelectPhotoActivity.this.getContentResolver().openInputStream(uri)));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

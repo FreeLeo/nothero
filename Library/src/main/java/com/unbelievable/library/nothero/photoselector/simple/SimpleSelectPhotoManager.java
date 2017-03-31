@@ -15,6 +15,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 import com.unbelievable.library.nothero.R;
+import com.unbelievable.library.nothero.content.IntentUtils;
+import com.unbelievable.library.nothero.content.UriUtils;
 import com.unbelievable.library.nothero.utils.Logger;
 
 import java.io.File;
@@ -29,7 +31,6 @@ public class SimpleSelectPhotoManager {
     public final int REQUESTCODE_SELECT_FROM_ALBUM = 0x0101;//album
     public final int REQUESTCODE_SELECT_FROM_CAMERA = REQUESTCODE_SELECT_FROM_ALBUM + 1;//camera
     public final int SET_ALBUM_PICTURE_KITKAT = REQUESTCODE_SELECT_FROM_CAMERA + 1;//zoom
-    private final int WRITE_PERMISSION_REQ_CODE = SET_ALBUM_PICTURE_KITKAT + 1;
     private Context mContext;
     private Uri mIconUrl;
     private Uri mIconCrop;
@@ -62,7 +63,7 @@ public class SimpleSelectPhotoManager {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                selectFromCamera((Activity) mContext);
+                                mIconUrl = selectFromCamera((Activity) mContext);
                                 break;
                             case 1:
                                 selectFromAlbum((Activity) mContext);
@@ -85,44 +86,23 @@ public class SimpleSelectPhotoManager {
      * @param activity
      */
     public void selectFromAlbum(Activity activity){
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        activity.startActivityForResult(intent, REQUESTCODE_SELECT_FROM_ALBUM);
+        activity.startActivityForResult(IntentUtils.getImageFromGallery(), REQUESTCODE_SELECT_FROM_ALBUM);
     }
 
     /**
      * get a photo by camera
      */
     public Uri selectFromCamera(Activity activity){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);//action is capture
-        Uri iconUrl = createCoverUri(activity,"_icon");
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, iconUrl);
-        activity.startActivityForResult(intent, REQUESTCODE_SELECT_FROM_CAMERA);
-        return iconUrl;
+        return selectFromCamera(activity,"",activity.getPackageName()+"_icon.jpg");
     }
 
     /**
-     * create a uri for output
-     * @param activity
-     * @param type filename
-     * @return
+     * get a photo by camera
      */
-    private Uri createCoverUri(Activity activity,String type) {
-        String filename = "ssmlfs" + type + ".jpg";
-        File outputImage = new File(Environment.getExternalStorageDirectory(), filename);
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, WRITE_PERMISSION_REQ_CODE);
-            return null;
-        }
-        try {
-            if (outputImage.exists()) {
-                outputImage.delete();
-            }
-            outputImage.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Uri.fromFile(outputImage);
+    public Uri selectFromCamera(Activity activity,String dir,String filename){
+        Uri saveFileUri = UriUtils.createCoverUri(activity,dir,filename);
+        activity.startActivityForResult(IntentUtils.getTakePhotosIntent(saveFileUri), REQUESTCODE_SELECT_FROM_CAMERA);
+        return saveFileUri;
     }
 
     public void onActivityResult(Activity activity,int requestCode, int resultCode, Intent data){
@@ -130,7 +110,7 @@ public class SimpleSelectPhotoManager {
         switch (requestCode){
             case  REQUESTCODE_SELECT_FROM_CAMERA:
                 if (resultCode == Activity.RESULT_OK) {
-                    startPhotoZoom(activity,mIconUrl);
+                    startCropPhoto(activity,mIconUrl);
                 }
                 break;
             case REQUESTCODE_SELECT_FROM_ALBUM:
@@ -138,7 +118,7 @@ public class SimpleSelectPhotoManager {
 //                    ToastUtils.toastL(activity,"你没有选择任何图片");
                 } else {
                     Uri uri = data.getData();
-                    startPhotoZoom(activity,uri);
+                    startCropPhoto(activity,uri);
                 }
                 break;
             case SET_ALBUM_PICTURE_KITKAT:
@@ -146,7 +126,7 @@ public class SimpleSelectPhotoManager {
                 if(data != null) {
                     Bitmap bitmap = data.getParcelableExtra("data");
                     if (mSelectListener != null) {
-                        mSelectListener.zoomPhoto(bitmap,mIconCrop);
+                        mSelectListener.cropPhoto(bitmap,mIconCrop);
                     }else{
                         Logger.e(TAG,"mSelectListener is null,if you want to get the callback,please init it.");
                     }
@@ -155,23 +135,15 @@ public class SimpleSelectPhotoManager {
         };
     }
 
-    public void startPhotoZoom(Activity activity,Uri uri) {
-        mIconCrop = createCoverUri(activity,"_icon_crop");
-        Intent intent = new Intent();
-        intent.setAction("com.android.camera.action.CROP");
-        intent.setDataAndType(uri, "image/*");// mUri是已经选择的图片Uri
-        intent.putExtra("crop", "true");
-        intent.putExtra("aspectX", 1);// 裁剪框比例
-        intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 300);// 输出图片大小
-        intent.putExtra("outputY", 300);
-        intent.putExtra("return-data", true);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, mIconCrop);
-        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+    public void startCropPhoto(Activity activity,Uri uri) {
+        mIconCrop = UriUtils.createCoverUri(activity,"",activity.getPackageName()+"_icon_crop.jpg");
+        IntentUtils.ImageCropIntentBuilder builder = new IntentUtils.ImageCropIntentBuilder(uri,mIconCrop,300,300);
+        builder.setScale(true);
+        Intent intent = builder.build();
         activity.startActivityForResult(intent, SET_ALBUM_PICTURE_KITKAT);
     }
 
     public interface SelectListener{
-        void zoomPhoto(Bitmap bitmap,Uri uri);
+        void cropPhoto(Bitmap bitmap,Uri uri);
     }
 }
