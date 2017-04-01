@@ -60,8 +60,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
     }
 
-    public void replaceFragment(int resId,Fragment fragment){
+    public void replaceFragment(int containerViewId,Fragment fragment){
         FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(resId,fragment).commit();
+        manager.beginTransaction().replace(containerViewId,fragment).commit();
     }
 }

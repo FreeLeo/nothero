@@ -27,7 +27,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mContentView = inflater.inflate(setLayoutResourceID(),container,false);
-        init();
+        init(mContentView);
         setupView();
         setupData();
         return mContentView;
@@ -35,7 +35,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     protected abstract int setLayoutResourceID();
 
-    protected  void init(){}
+    protected  void init(View view){}
 
     protected  void setupView(){}
 

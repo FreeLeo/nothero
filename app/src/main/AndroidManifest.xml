@@ -28,7 +28,11 @@
             android:name=".testadapter.AdapterActivity"
             android:label="@string/act_lable_adapter" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.SimpleSelectPhotoActivity" android:label="@string/act_lable_simple_select_photo"/>
+        <activity
+            android:name=".activity.SimpleSelectPhotoActivity"
+            android:label="@string/act_lable_simple_select_photo" />
+        <activity android:name=".app.FragmentBuilderActivity"
+            android:label="@string/act_lable_app_fragment_builder"></activity>
     </application>
 
 </manifest>

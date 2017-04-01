@@ -9,4 +9,5 @@
     <string name="act_lable_bar_chart">bar chart</string>
     <string name="act_lable_adapter">recycleview adapter</string>
     <string name="act_lable_simple_select_photo">simple select photo</string>
+    <string name="act_lable_app_fragment_builder">app fragment builder</string>
 </resources>
