@@ -1,4 +1,4 @@
-package com.unbelievable.library.nothero.utils;
+package com.unbelievable.library.android.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;

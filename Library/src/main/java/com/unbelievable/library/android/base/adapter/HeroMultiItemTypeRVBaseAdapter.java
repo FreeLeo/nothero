@@ -1,4 +1,4 @@
-package com.unbelievable.library.nothero.base.adapter;
+package com.unbelievable.library.android.base.adapter;
 
 import android.content.Context;
 

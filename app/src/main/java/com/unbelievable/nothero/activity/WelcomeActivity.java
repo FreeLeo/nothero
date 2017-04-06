@@ -2,7 +2,8 @@ package com.unbelievable.nothero.activity;
 
 import android.os.Bundle;
 
-import com.unbelievable.library.nothero.constants.Constants;
+import com.unbelievable.library.android.app.BaseActivity;
+import com.unbelievable.library.android.constants.Constants;
 import com.unbelievable.nothero.R;
 
 public class WelcomeActivity extends BaseActivity {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.unbelievable.library.nothero.content;
+package com.unbelievable.library.android.content;
 
 import android.content.ComponentName;
 import android.content.Context;

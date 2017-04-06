@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.unbelievable.nothero.activity.BarChartActivity">
 
-    <com.unbelievable.library.nothero.View.BarChart
+    <com.unbelievable.library.android.View.BarChart
         android:id="@+id/v_bar_chart"
         android:layout_width="match_parent"
         android:layout_height="500dp"/>

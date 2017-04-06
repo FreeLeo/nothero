@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.unbelievable.library.nothero.utils;
+package com.unbelievable.library.android.utils;
 
 import android.content.Context;
 import android.view.View;

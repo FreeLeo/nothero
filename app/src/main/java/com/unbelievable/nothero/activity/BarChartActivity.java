@@ -3,7 +3,7 @@ package com.unbelievable.nothero.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.unbelievable.library.nothero.View.BarChart;
+import com.unbelievable.library.android.View.BarChart;
 import com.unbelievable.nothero.R;
 import java.util.ArrayList;
 import java.util.List;

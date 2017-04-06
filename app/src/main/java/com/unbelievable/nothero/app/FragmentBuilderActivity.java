@@ -1,12 +1,11 @@
 package com.unbelievable.nothero.app;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.unbelievable.library.nothero.app.FragmentBuilder;
+import com.unbelievable.library.android.app.FragmentBuilder;
 import com.unbelievable.nothero.R;
-import com.unbelievable.nothero.activity.BaseActivity;
+import com.unbelievable.library.android.app.BaseActivity;
 import com.unbelievable.nothero.fragment.TestFragment;
 
 public class FragmentBuilderActivity extends BaseActivity implements TestFragment.OnFragmentInteractionListener {

@@ -1,26 +1,17 @@
-package com.unbelievable.library.nothero.photoselector.simple;
+package com.unbelievable.library.android.photoselector.simple;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 
+import com.unbelievable.library.android.content.UriUtils;
 import com.unbelievable.library.nothero.R;
-import com.unbelievable.library.nothero.content.IntentUtils;
-import com.unbelievable.library.nothero.content.UriUtils;
-import com.unbelievable.library.nothero.utils.Logger;
-
-import java.io.File;
-import java.io.IOException;
+import com.unbelievable.library.android.content.IntentUtils;
+import com.unbelievable.library.android.utils.Logger;
 
 /**
  * get photo by system

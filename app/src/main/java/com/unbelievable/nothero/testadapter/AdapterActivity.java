@@ -1,10 +1,9 @@
 package com.unbelievable.nothero.testadapter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.unbelievable.nothero.R;
-import com.unbelievable.nothero.activity.BaseActivity;
+import com.unbelievable.library.android.app.BaseActivity;
 import com.unbelievable.nothero.testadapter.dummy.DummyContent;
 
 public class AdapterActivity extends BaseActivity implements DummyFragment.OnListFragmentInteractionListener {

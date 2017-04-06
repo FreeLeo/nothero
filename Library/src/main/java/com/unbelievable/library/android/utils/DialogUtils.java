@@ -1,4 +1,4 @@
-package com.unbelievable.library.nothero.utils;
+package com.unbelievable.library.android.utils;
 
 /**
  * Created by admin on 2017/3/15.
@@ -9,7 +9,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 /**
  * 对话框工具箱

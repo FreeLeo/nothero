@@ -1,12 +1,10 @@
 package com.unbelievable.nothero.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -15,7 +13,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 
-import com.unbelievable.library.nothero.base.adapter.BaseFragment;
+import com.unbelievable.library.android.app.BaseActivity;
+import com.unbelievable.library.android.base.adapter.BaseFragment;
 import com.unbelievable.nothero.R;
 import com.unbelievable.nothero.download.DownloadFragment;
 

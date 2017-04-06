@@ -33,6 +33,7 @@
             android:label="@string/act_lable_simple_select_photo" />
         <activity android:name=".app.FragmentBuilderActivity"
             android:label="@string/act_lable_app_fragment_builder"></activity>
+
     </application>
 
 </manifest>

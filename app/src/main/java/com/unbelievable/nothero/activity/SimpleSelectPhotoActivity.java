@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.unbelievable.library.nothero.photoselector.simple.SimpleSelectPhotoManager;
+import com.unbelievable.library.android.app.BaseActivity;
+import com.unbelievable.library.android.photoselector.simple.SimpleSelectPhotoManager;
 import com.unbelievable.nothero.R;
 
 import java.io.FileNotFoundException;

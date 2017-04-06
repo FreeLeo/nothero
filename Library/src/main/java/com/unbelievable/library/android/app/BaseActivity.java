@@ -1,4 +1,4 @@
-package com.unbelievable.nothero.activity;
+package com.unbelievable.library.android.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+
+import com.unbelievable.library.android.utils.ToastUtils;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -57,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param str
      */
     public void showToast(String str){
-        Toast.makeText(this,str,Toast.LENGTH_SHORT).show();
+        ToastUtils.toastL(this,str);
     }
 
     public void replaceFragment(int containerViewId,Fragment fragment){
