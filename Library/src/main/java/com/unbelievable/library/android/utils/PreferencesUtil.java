@@ -28,7 +28,7 @@ public abstract class PreferencesUtil {
 
     private static Context getContext() {
         synchronized (PreferencesUtil.class) {
-            if (getContext() == null) {
+            if (mContext == null) {
                 throw new NullPointerException("Call PreferencesUtil.initialize(context) within your Application onCreate() method.");
             } else {
                 return mContext;
