@@ -33,6 +33,7 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
     private boolean isLoading;
     private RecyclerView mRecyclerView;
     private int mItemCount;
+    private boolean mCanLoadMore = true;
 
     public SwipeRefreshView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -102,6 +103,10 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
      * 判断是否满足加载更多条件
      */
     private boolean canLoadMore() {
+        if(!mCanLoadMore){
+            setLoading(false);
+            return mCanLoadMore;
+        }
         // 1. 是上拉状态
         boolean condition1 = (mDownY - mUpY) >= mScaledTouchSlop;
         if (condition1) {
@@ -137,9 +142,10 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
         return condition1 && condition2 && condition3;
     }
 
-    public void init(int itemCount,int loadLast){
+    public void init(int itemCount,int loadLast,boolean canLoadMore){
         this.mItemCount = itemCount;
         this.loadLast = loadLast;
+        this.mCanLoadMore = canLoadMore;
         if(itemCount <= loadLast){
             throw new NullPointerException("loadLast must be greater than itemCount.");
         }
@@ -182,6 +188,9 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
         }
     }
 
+    public void setCanLoadMore(boolean canLoadMore){
+        mCanLoadMore = canLoadMore;
+    }
 
     /**
      * 设置ListView的滑动监听
