@@ -41,7 +41,7 @@ uploadArchives {
         pom.project {
             groupId "com.unbelievable.library"
             artifactId "nothero"
-            version 2.0
+            version 2.2
         }
     }
 }
