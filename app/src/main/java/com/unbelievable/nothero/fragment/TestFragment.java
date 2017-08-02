@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public class TestFragment extends BaseFragment {
+    private final String TAG = TestFragment.class.getSimpleName() + hashCode();
 
     @BindView(R.id.content_tv)
     TextView contentTv;
@@ -34,6 +35,11 @@ public class TestFragment extends BaseFragment {
         if(!TextUtils.isEmpty(content)){
             contentTv.setText(content);
         }
+    }
+
+    @Override
+    public String getVolleyTag() {
+        return TAG;
     }
 
     @Override

@@ -9,13 +9,18 @@ import com.unbelievable.library.android.app.BaseActivity;
 import com.unbelievable.nothero.fragment.TestFragment;
 
 public class FragmentBuilderActivity extends BaseActivity implements TestFragment.OnFragmentInteractionListener {
-
+    private final String TAG = FragmentBuilderActivity.class.getSimpleName() + hashCode();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment_builder);
 
         replaceFragment(R.id.activity_fragment_builder,new FragmentBuilder(TestFragment.class).putString("content","测试FragmentBuilder").build());
+    }
+
+    @Override
+    public String getVolleyTag() {
+        return TAG;
     }
 
     @Override

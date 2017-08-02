@@ -18,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SimpleSelectPhotoActivity extends BaseActivity {
+    private final String TAG = SimpleSelectPhotoActivity.class.getSimpleName() + hashCode();
 
     @BindView(R.id.iv_photo)
     ImageView ivPhoto;
@@ -49,6 +50,11 @@ public class SimpleSelectPhotoActivity extends BaseActivity {
                 mSimpleSelectPhotoManager.popSelectDialogDefault();
             }
         });
+    }
+
+    @Override
+    public String getVolleyTag() {
+        return TAG;
     }
 
     @Override

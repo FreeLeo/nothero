@@ -8,9 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.unbelievable.library.android.volleyplus.VolleyPlus;
+
 public abstract class BaseFragment extends Fragment implements View.OnClickListener{
     private View mContentView;
-    private Context mContext;
     private OnFragmentInteractionListener mListener;
 
     public BaseFragment() {
@@ -50,13 +51,18 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mContext = context;
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        VolleyPlus.getRequestQueue().cancelAll(getVolleyTag());
     }
 
     @Override
@@ -83,4 +89,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
     }
+
+    public abstract String getVolleyTag();
 }

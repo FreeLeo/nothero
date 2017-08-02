@@ -6,5 +6,5 @@ package com.unbelievable.library.android.constants;
 
 public class Constants {
     /** 启动页延时跳转 */
-    public static final int DEFAULT_DELAY_WELCOME = 500;
+    public static final int DEFAULT_DELAY_WELCOME = 1500;
 }

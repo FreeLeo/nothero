@@ -7,7 +7,7 @@ import com.unbelievable.library.android.constants.Constants;
 import com.unbelievable.nothero.R;
 
 public class WelcomeActivity extends BaseActivity {
-
+    private final String TAG = WelcomeActivity.class.getSimpleName() + hashCode();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,8 +15,13 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     @Override
+    public String getVolleyTag() {
+        return TAG;
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
-        autoJump(MainActivity.class, Constants.DEFAULT_DELAY_WELCOME,true);
+        autoStartActivity(MainActivity.class, Constants.DEFAULT_DELAY_WELCOME,true);
     }
 }

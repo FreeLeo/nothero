@@ -1,29 +1,16 @@
 package com.unbelievable.nothero.activity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.PixelFormat;
-import android.net.Uri;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
 
-import com.unbelievable.library.android.app.BaseActivity;
 import com.unbelievable.library.android.base.adapter.BaseFragment;
 import com.unbelievable.library.implementation.main.HeroTabActivity;
 import com.unbelievable.nothero.R;
 import com.unbelievable.nothero.download.DownloadFragment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class HomeTabActivity extends HeroTabActivity implements View.OnClickListener,BaseFragment.OnFragmentInteractionListener{
-
+    private final String TAG = HomeTabActivity.class.getSimpleName() + hashCode();
     public final static String TAG_FRAGMENT_HOME = "tag_home";
     public final static String TAG_FRAGMENT_PRODUCT = "tag_product";
     public final static String TAG_FRAGMENT_PUBLISHED = "tag_published";
@@ -44,4 +31,8 @@ public class HomeTabActivity extends HeroTabActivity implements View.OnClickList
         mTabManager.addTab(mTabHost.newTabSpec(TAG_FRAGMENT_I).setIndicator(indicator5),DownloadFragment.class, null);
     }
 
+    @Override
+    public String getVolleyTag() {
+        return TAG;
+    }
 }

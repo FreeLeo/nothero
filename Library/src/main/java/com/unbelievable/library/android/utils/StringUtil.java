@@ -1,5 +1,11 @@
 package com.unbelievable.library.android.utils;
 
+import android.content.Context;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -76,6 +82,25 @@ public class StringUtil {
     }
 
     /**
+     * 半角转换为全角
+     *
+     * @param input
+     * @return
+     */
+    public static String ToDBC(String input) {
+        char[] c = input.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] == 12288) {
+                c[i] = (char) 32;
+                continue;
+            }
+            if (c[i] > 65280 && c[i] < 65375)
+                c[i] = (char) (c[i] - 65248);
+        }
+        return new String(c);
+    }
+
+    /**
      * 字符串转整数
      *
      * @param str
@@ -128,6 +153,86 @@ public class StringUtil {
         } catch (Exception e) {
         }
         return false;
+    }
+
+    public static SpannableStringBuilder highlightStirng(Context context, String wholeString, String keyString, int color) {
+        if (context == null || TextUtils.isEmpty(wholeString) || TextUtils.isEmpty(keyString) || !wholeString.contains(keyString)) {
+            return new SpannableStringBuilder(wholeString);
+        }
+
+        int start = wholeString.indexOf(keyString);
+        int end = start + keyString.length();
+        SpannableStringBuilder resultString = new SpannableStringBuilder(wholeString);
+        resultString.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        return resultString;
+    }
+
+    public static SpannableStringBuilder highlightStirng(Context context, String wholeString, int color, String... keyString) {
+        if (context == null || TextUtils.isEmpty(wholeString) || keyString.length == 0) {
+            return null;
+        }
+        SpannableStringBuilder resultString = new SpannableStringBuilder(wholeString);
+        for (String s : keyString) {
+            if(!TextUtils.isEmpty(s) && wholeString.contains(s)) {
+                int start = wholeString.indexOf(s);
+                int end = start + s.length();
+                int last_start = wholeString.lastIndexOf(s);
+                int last_end = last_start + s.length();
+                if(start != last_start){
+                    resultString.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)), last_start, last_end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                }
+                resultString.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            }
+        }
+
+        return resultString;
+    }
+
+    public static SpannableStringBuilder highlightStirng(Context context, String wholeString, int color, String[] keyString,int secondColor,String...secondString) {
+        if (context == null || TextUtils.isEmpty(wholeString) || keyString.length == 0) {
+            return null;
+        }
+        SpannableStringBuilder resultString = new SpannableStringBuilder(wholeString);
+        for (String s : keyString) {
+            if(!TextUtils.isEmpty(s) && wholeString.contains(s)) {
+                int index = queryIndex(wholeString, s, 0);
+                while(index >= 0) {
+                    int start = index;
+                    int end = start + s.length();
+                    resultString.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                    index = queryIndex(wholeString, s, end);
+                }
+            }
+        }
+        for (String s : secondString) {
+            if(!TextUtils.isEmpty(s) && wholeString.contains(s)) {
+                int start = wholeString.indexOf(s);
+                int end = start + s.length();
+                resultString.setSpan(new ForegroundColorSpan(context.getResources().getColor(secondColor)), start, end, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            }
+        }
+
+        return resultString;
+    }
+
+    private static int queryIndex(String str,String tag,int start){
+        return str.indexOf(tag,start);
+    }
+
+    public static boolean isMobile(String mobile) {
+        Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");
+        Matcher m = p.matcher(mobile);
+
+        return m.matches();
+    }
+
+    public static boolean isEmail(String email) {
+        String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+        Pattern p = Pattern.compile(str);
+        Matcher m = p.matcher(email);
+
+        return m.matches();
     }
 
     //********************************************** MD5 *************************************************************

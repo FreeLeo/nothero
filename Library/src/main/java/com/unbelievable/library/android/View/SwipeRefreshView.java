@@ -164,7 +164,6 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
             setLoading(true);
             mListener.onLoadMore();
         }
-
     }
 
     /**

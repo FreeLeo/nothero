@@ -8,4 +8,6 @@
         <item>拍照</item>
         <item>从相册选择</item>
     </string-array>
+
+    <string name="file_not_exist">文件不存在</string>
 </resources>
