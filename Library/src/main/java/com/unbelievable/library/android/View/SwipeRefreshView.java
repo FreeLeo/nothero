@@ -2,16 +2,16 @@ package com.unbelievable.library.android.View;
 
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.unbelievable.library.nothero.R;
+import com.headerfooter.songhang.library.SmartRecyclerAdapter;
 
 /**
  * 自定义View继承SwipeRefreshLayout，添加上拉加载更多的布局属性,添加对RecyclerView的支持
@@ -20,7 +20,7 @@ import com.unbelievable.library.nothero.R;
 
 public class SwipeRefreshView extends SwipeRefreshLayout {
 
-    private static final String TAG = SwipeRefreshView.class.getSimpleName();
+    private static final String TAG = com.unbelievable.library.android.View.SwipeRefreshView.class.getSimpleName();
     private final int mScaledTouchSlop;
     private int loadLast = 1;
     private final View mFooterView;
@@ -30,7 +30,7 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
     /**
      * 正在加载状态
      */
-    private boolean isLoading;
+    private boolean isLoading = false;
     private RecyclerView mRecyclerView;
     private int mItemCount;
     private boolean mCanLoadMore = true;
@@ -38,7 +38,7 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
     public SwipeRefreshView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 填充底部加载布局
-        mFooterView = View.inflate(context, R.layout.view_footer, null);
+        mFooterView = View.inflate(context, com.unbelievable.library.nothero.R.layout.view_footer, null);
 
         // 表示控件移动的最小距离，手移动的距离大于这个距离才能拖动控件
         mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -110,34 +110,45 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
         // 1. 是上拉状态
         boolean condition1 = (mDownY - mUpY) >= mScaledTouchSlop;
         if (condition1) {
-            Log.d(TAG, "------->  是上拉状态");
         }
 
         // 2. 当前页面可见的item是最后一个条目,一般最后一个条目位置需要大于第一页的数据长度
         boolean condition2 = false;
         if (mListView != null && mListView.getAdapter() != null) {
-
             if (mItemCount > 0) {
                 if (mListView.getAdapter().getCount() < mItemCount) {
                     // 第一页未满，禁止下拉
                     condition2 = false;
                 }else {
-                    condition2 = mListView.getLastVisiblePosition() == (mListView.getAdapter().getCount() - loadLast);
+                    condition2 = mListView.getLastVisiblePosition() >= (mListView.getAdapter().getCount() - loadLast);
                 }
             } else {
                 // 未设置数据长度，则默认第一页数据不满时也可以上拉
-                condition2 = mListView.getLastVisiblePosition() == (mListView.getAdapter().getCount() - loadLast);
+                condition2 = mListView.getLastVisiblePosition() >= (mListView.getAdapter().getCount() - loadLast);
             }
+        }
 
+        if (mRecyclerView != null && mRecyclerView.getAdapter() != null) {
+            if (mItemCount > 0) {
+                if (mRecyclerView.getAdapter().getItemCount() < mItemCount) {
+                    // 第一页未满，禁止下拉
+                    condition2 = false;
+                }else {
+                    LinearLayoutManager layoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                    condition2 = layoutManager.findLastVisibleItemPosition() >= (mRecyclerView.getAdapter().getItemCount() - loadLast);
+                }
+            } else {
+                // 未设置数据长度，则默认第一页数据不满时也可以上拉
+                LinearLayoutManager layoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                condition2 = layoutManager.findLastVisibleItemPosition() >= (mRecyclerView.getAdapter().getItemCount() - loadLast);
+            }
         }
 
         if (condition2) {
-            Log.d(TAG, "------->  是最后一个条目");
         }
         // 3. 正在加载状态
         boolean condition3 = !isLoading;
         if (condition3) {
-            Log.d(TAG, "------->  不是正在加载状态");
         }
         return condition1 && condition2 && condition3;
     }
@@ -176,11 +187,24 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
         isLoading = loading;
         if (isLoading) {
             // 显示布局
-            mListView.addFooterView(mFooterView);
+            if(mListView != null) {
+                mListView.addFooterView(mFooterView);
+            }
+            if(mRecyclerView != null && mRecyclerView.getAdapter() != null){
+                if(mRecyclerView.getAdapter() instanceof SmartRecyclerAdapter){
+                    ((SmartRecyclerAdapter)mRecyclerView.getAdapter()).setFooterView(mFooterView);
+                }
+            }
         } else {
             // 隐藏布局
-            mListView.removeFooterView(mFooterView);
-
+            if(mListView != null) {
+                mListView.removeFooterView(mFooterView);
+            }
+            if(mRecyclerView != null && mRecyclerView.getAdapter() != null){
+                if(mRecyclerView.getAdapter() instanceof SmartRecyclerAdapter){
+                    ((SmartRecyclerAdapter)mRecyclerView.getAdapter()).removeFooterView();
+                }
+            }
             // 重置滑动的坐标
             mDownY = 0;
             mUpY = 0;

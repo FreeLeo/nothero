@@ -6,7 +6,7 @@ android {
     buildToolsVersion "25.0.2"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -32,6 +32,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'dev.dworks.libs:volleyplus:+'
     testCompile 'junit:junit:4.12'
+    compile 'com.songhang:smart-headerfooter-recyclerview:1.0.0'
 }
 
 uploadArchives {
@@ -41,7 +42,7 @@ uploadArchives {
         pom.project {
             groupId "com.unbelievable.library"
             artifactId "nothero"
-            version 2.3
+            version 2.5
         }
     }
 }
