@@ -67,12 +67,16 @@ public class DeviceUtil {
     public static String getDeviceId(Context ctx){
 
         String udid = PreferencesUtil.get("udid","");
-        String uniqueId ;
+        String uniqueId = null;
         if(!TextUtils.isEmpty(udid)){
             uniqueId = udid;
         }else{
-            final TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
-            uniqueId = tm.getDeviceId();
+            try {
+                final TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
+                uniqueId = tm.getDeviceId();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             boolean isAllZero = false;
             if(uniqueId != null){
                 Pattern pattern = Pattern.compile("[0]*");

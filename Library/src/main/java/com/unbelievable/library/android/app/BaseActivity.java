@@ -161,6 +161,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        VolleyPlus.getRequestQueue().cancelAll(getVolleyTag());
+        try {
+            VolleyPlus.getRequestQueue().cancelAll(getVolleyTag());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

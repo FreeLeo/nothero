@@ -12,6 +12,7 @@ import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.headerfooter.songhang.library.SmartRecyclerAdapter;
+import com.unbelievable.library.nothero.R;
 
 /**
  * 自定义View继承SwipeRefreshLayout，添加上拉加载更多的布局属性,添加对RecyclerView的支持
@@ -38,7 +39,7 @@ public class SwipeRefreshView extends SwipeRefreshLayout {
     public SwipeRefreshView(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 填充底部加载布局
-        mFooterView = View.inflate(context, com.unbelievable.library.nothero.R.layout.view_footer, null);
+        mFooterView = View.inflate(context, R.layout.view_footer, null);
 
         // 表示控件移动的最小距离，手移动的距离大于这个距离才能拖动控件
         mScaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
