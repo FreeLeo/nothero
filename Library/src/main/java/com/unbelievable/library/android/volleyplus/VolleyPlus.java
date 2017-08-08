@@ -2,10 +2,10 @@ package com.unbelievable.library.android.volleyplus;
 
 import android.content.Context;
 
-import com.android.volley.BuildConfig;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.Volley;
+import com.unbelievable.library.nothero.BuildConfig;
 
 public class VolleyPlus {
     private static RequestQueue mRequestQueue;
