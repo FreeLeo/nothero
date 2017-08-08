@@ -142,7 +142,7 @@ public abstract class BaseTranscation {
 					return;
 				}
 				if(error instanceof NoConnectionError){
-                    callback.onFailure(HttpErrorUtil.ERROR_NETWORK_ERROR, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_NETWORK_ERROR), null);
+                    callback.onFailure(HttpErrorUtil.ERROR_CONN_ERROR, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_CONN_ERROR), null);
                     return;
                 }
 			}			
