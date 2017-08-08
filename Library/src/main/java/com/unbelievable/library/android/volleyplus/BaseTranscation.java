@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.error.NoConnectionError;
 import com.android.volley.error.ParseError;
 import com.android.volley.error.TimeoutError;
 import com.android.volley.error.VolleyError;
@@ -128,18 +129,22 @@ public abstract class BaseTranscation {
 					return;
 				}
 				
-				if(error.getCause() instanceof ParseError){
+				if(error instanceof ParseError){
 					callback.onFailure(HttpErrorUtil.ERROR_PARSE_DATA_EXCEPTION, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_PARSE_DATA_EXCEPTION), null);
 					return;
 				}
-				if(error.getCause() instanceof TimeoutError){
+				if(error instanceof TimeoutError){
 					callback.onFailure(HttpErrorUtil.ERROR_NETWORK_ERROR, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_NETWORK_ERROR), null);
 					return;
 				}
-				if(error.getCause() instanceof VolleyError){
+				if(error instanceof VolleyError){
 					callback.onFailure(HttpErrorUtil.ERROR_SERVER_ERROR, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_SERVER_ERROR), null);
 					return;
 				}
+				if(error instanceof NoConnectionError){
+                    callback.onFailure(HttpErrorUtil.ERROR_NETWORK_ERROR, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_NETWORK_ERROR), null);
+                    return;
+                }
 			}			
 			callback.onFailure(HttpErrorUtil.ERROR_UNKNOW, HttpErrorUtil.getErrorMsg(HttpErrorUtil.ERROR_UNKNOW), null);			
 		}
